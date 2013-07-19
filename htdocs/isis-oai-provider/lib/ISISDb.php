@@ -35,6 +35,10 @@ class ISISDb{
     return $this->wxis_document_post( $this->wxis_url("gettotal.xis",$params, $key_length) );
   }
   
+  function gettotalp($params, $key_length){
+    return $this->wxis_document_post( $this->wxis_url("gettotalp.xis",$params, $key_length) );
+  }    
+  
   function index($params){
     return wxis_index($params);
   }
