@@ -1,5 +1,5 @@
 <?php
-
+session_start();  
 if(isset($_REQUEST['debug'])) {
 	ini_set('display_errors', 1);
 } else {
