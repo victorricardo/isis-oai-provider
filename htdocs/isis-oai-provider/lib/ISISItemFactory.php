@@ -75,6 +75,22 @@ class ISISItemFactory implements OAIItemFactory {
 
         return $ItemIds;
     }
+    
+    function GetItemsTotal($setSpec){   
+        $db = new ISISDb($this->DBName);  
+        $params_get = array(); 
+        foreach ($this->Databases as $database) { 
+          if ($database['setSpec'] == $setSpec) {
+             $params = array(
+                'database' => $database['database'],
+             ); 
+             $params_get = $params;
+             $isiskey = $database['isis_key_length'];           
+          }
+        } 
+        $total = $db->gettotalp($params_get, $isiskey); 
+        return $total;
+    }    
 
     # retrieve IDs of items that matches set spec (only needed if sets supported)
     function GetItemsInSet($SetSpec, $StartingDate = NULL, $EndingDate = NULL, $ListStartPoint=0)
