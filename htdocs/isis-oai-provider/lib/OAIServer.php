@@ -36,6 +36,22 @@ class OAIServer {
 
         # start with empty list of formats
         $this->FormatDescrs = array();
+        
+        if (!isset($_SESSION['total'])) {
+          $_SESSION['total'] = $_GET['set'];   
+        } elseif (isset($_GET['set'])) {
+          $_SESSION['total'] = $_GET['set'];  
+        }
+    
+        if ($_GET['resumptionToken']) {
+           $resumptionToken = explode('_', $_GET['resumptionToken']); 
+           $resumptionToken = str_replace('-', '', $resumptionToken[3]);
+           $_SESSION['total'] = $resumptionToken;
+        }
+        
+        # add header with identifier, datestamp, and set tags  
+        $total = $this->ItemFactory->GetItemsTotal($_SESSION['total']);
+        $this->Total = $total;        
     }
 
     # add metadata format to export
