@@ -753,6 +753,7 @@ class OAIServer {
         $Tags .= $this->FormatTag("identifier",
                                   $this->EncodeIdentifier($Item->GetId()));
         $Tags .= $this->FormatTag("datestamp", $Item->GetDatestamp());
+        $Tags .= $this->FormatTag("total", $this->Total); 
         $Sets = $Item->GetSets();
         foreach ($Sets as $Set)
         {
