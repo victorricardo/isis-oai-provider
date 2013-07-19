@@ -752,12 +752,11 @@ class OAIServer {
         $Tags .= $this->FormatTag("header");
         $Tags .= $this->FormatTag("identifier",
                                   $this->EncodeIdentifier($Item->GetId()));
-        $Tags .= $this->FormatTag("datestamp", $Item->GetDatestamp());
-        $Tags .= $this->FormatTag("total", $this->Total); 
+        $Tags .= $this->FormatTag("datestamp", $Item->GetDatestamp()); 
         $Sets = $Item->GetSets();
         foreach ($Sets as $Set)
         {
-            $Tags .= $this->FormatTag("setSpec", $Set);
+            $Tags .= $this->FormatTag("setSpec", $Set.':'.$this->Total);
         }
         $Tags .= $this->FormatTag();
 
